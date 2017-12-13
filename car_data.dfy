@@ -58,27 +58,33 @@ machinery_input := [speed, steering];
 
 method getSpeed() returns (s:int)
 {
-s:= machinery_input[0];
+if |machinery_input| != 0{s:= machinery_input[0];}
+else {s:=0;}
 }
 method getSteering() returns (st:int)
 {
-st:= machinery_input[1];
+if |machinery_input| > 1{st:= machinery_input[1];}
+else {st:=0;}
 }
 
 
+}
+
+class RoadState{
+var state:bool;
 }
 
 class CarState
 {
 var machine_data: MachineData;
 var display: bool;
-var road_state: bool;
+var road_state: RoadState;
 var user_info: UserData;
 var car_on: bool;
 var self_driving: bool;
 //Eventually make own objects to replace bools.
 
-constructor(init_road_state: bool, init_user_info: UserData, init_machine_data: MachineData)
+constructor(init_road_state: RoadState, init_user_info: UserData, init_machine_data: MachineData)
  modifies this
  {
   display, car_on := true, true;
@@ -104,7 +110,7 @@ method setDisplay(new_display: bool)
   display := new_display;
  }
 
-method setRoadState(new_road_state: bool)
+method setRoadState(new_road_state: RoadState)
  modifies this
  {
   road_state := new_road_state;
