@@ -15,7 +15,7 @@ var user_state := new UserData(true, false); //user is alert and does not want t
 var i := 0;
  while i < num_iterations
  {
-if (user_state.self_drive_req == true){car := SelfDrive(car);}
+if ((user_state.self_drive_req == true)||(car.self_driving == true)){car := SelfDrive(car);}
 else {car := UserDrive(car);}
 i:= i+1;
 
