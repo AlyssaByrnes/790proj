@@ -72,6 +72,11 @@ else {st:=0;}
 
 class RoadState{
 var state:bool;
+
+constructor()
+modifies this{
+state:= true;
+}
 }
 
 class CarState
